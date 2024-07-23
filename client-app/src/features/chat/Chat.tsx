@@ -16,8 +16,6 @@ function Chat() {
   //   fetchCompanies();
   // }, [getCompanies]);
 
-  console.log(company);
-
   if (company.length === 0) return null;
 
   const information =

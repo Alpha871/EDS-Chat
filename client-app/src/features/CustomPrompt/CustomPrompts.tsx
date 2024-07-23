@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function CustomPrompts({ manage = true }: { manage?: boolean }) {
-  const { customPromptStore } = useStore();
+  const { customPromptStore, userStore } = useStore();
   const { getCustomPrompts, customPrompts } = customPromptStore;
 
   useEffect(() => {
@@ -29,9 +29,11 @@ function CustomPrompts({ manage = true }: { manage?: boolean }) {
       ) : (
         <div className="flex flex-col gap-3 mt-4">
           <p className="text-white">No Custom Prompt yet </p>
-          <Button className="px-3 py-2 text-white bg-blue">
-            <Link to="/addCustomPrompt">Add CustomPrompt</Link>
-          </Button>
+          {userStore.user?.role.toLowerCase() === "admin" && (
+            <Button className="px-3 py-2 text-white bg-blue">
+              <Link to="/addCustomPrompt">Add CustomPrompt</Link>
+            </Button>
+          )}
         </div>
       )}
     </div>

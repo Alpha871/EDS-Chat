@@ -7,7 +7,7 @@ import { User, UserFormValues } from "../models/user";
 
 export default class UserStore {
   user: User | null = null;
-  fbLoading = false;
+  GLoading = false;
   refreshTokenTimeout?: number;
 
   constructor() {
@@ -21,7 +21,7 @@ export default class UserStore {
   login = async (creds: UserFormValues) => {
     const user = await agent.Account.login(creds);
     store.commonStore.setToken(user.token);
-    // this.startRefreshTokenTimer(user);
+    this.startRefreshTokenTimer(user);
     runInAction(() => (this.user = user));
 
     // store.modalStore.closeModal();
@@ -36,7 +36,7 @@ export default class UserStore {
     const user = await agent.Account.register(creds);
     store.commonStore.setToken(user.token);
 
-    // this.startRefreshTokenTimer(user);
+    this.startRefreshTokenTimer(user);
     runInAction(() => (this.user = user));
   };
 
@@ -44,36 +44,32 @@ export default class UserStore {
     try {
       const user = await agent.Account.current();
       store.commonStore.setToken(user.token);
-      //   this.startRefreshTokenTimer(user);
+      this.startRefreshTokenTimer(user);
       runInAction(() => (this.user = user));
     } catch (error) {
       console.log(error);
     }
   };
 
-  // setDisplayName = async (displayName: string) => {
-  //   if (this.user) this.user.displayName = displayName;
-  // };
-
   setImage = (image: string) => {
     if (this.user) this.user.image = image;
   };
 
-  facebookLogin = async (accessToken: string) => {
+  GoogleLogin = async (accessToken: string) => {
     try {
-      this.fbLoading = true;
-      const user = await agent.Account.fbLogin(accessToken);
+      this.GLoading = true;
+      const user = await agent.Account.GLogin(accessToken);
       store.commonStore.setToken(user.token);
-      //   this.startRefreshTokenTimer(user);
+      this.startRefreshTokenTimer(user);
       runInAction(() => {
         this.user = user;
-        this.fbLoading = false;
+        this.GLoading = false;
       });
-      router.navigate("/activities");
+      router.navigate("/chat");
     } catch (error) {
       console.log(error);
       runInAction(() => {
-        this.fbLoading = false;
+        this.GLoading = false;
       });
     }
   };
@@ -84,18 +80,21 @@ export default class UserStore {
       const user = await agent.Account.refreshToken();
       runInAction(() => (this.user = user));
       store.commonStore.setToken(user.token);
-      //   this.startRefreshTokenTimer(user);
+      this.startRefreshTokenTimer(user);
     } catch (error) {
       console.log(error);
     }
   };
 
-  //   private startRefreshTokenTimer(user: User) {
-  //     const jwtToken = JSON.parse(atob(user.token.split(".")[1]));
-  //     const expires = new Date(jwtToken.exp * 1000); //to milliseconds
-  //     const timeout = expires.getTime() - Date.now() - 60 * 1000;
-  // this.refreshTokenTimeout = setTimeout(this.refreshToken, timeout);
-  //   }
+  private startRefreshTokenTimer(user: User) {
+    const jwtToken = JSON.parse(atob(user.token.split(".")[1]));
+    const expires = new Date(jwtToken.exp * 1000); //to milliseconds
+    const timeout = expires.getTime() - Date.now() - 60 * 1000;
+    this.refreshTokenTimeout = setTimeout(
+      this.refreshToken,
+      timeout
+    ) as unknown as number;
+  }
 
   private stopRefreshTokenTimer() {
     clearTimeout(this.refreshTokenTimeout);

@@ -5,7 +5,6 @@ import { Form, FormField, FormItem } from "../ui/form";
 import { Input } from "../ui/input";
 import { useEffect, useState } from "react";
 import { ChatSession, GoogleGenerativeAI } from "@google/generative-ai";
-// import { usePrompt } from "@/lib/context/PromptContext";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { useStore } from "@/app/store/store";
 import { observer } from "mobx-react-lite";
@@ -31,8 +30,6 @@ function PromptArea({
   const [chat, setChat] = useState<ChatSession>();
   const { customPromptStore } = useStore();
   const { selectedCustomPrompt } = customPromptStore;
-
-  console.log("information", informations);
 
   const api_key = import.meta.env.VITE_GEMINI_KEY;
 
@@ -136,7 +133,7 @@ function PromptArea({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="sticky bottom-20 w-full flex "
+          className="fixed bottom-20 w-3/5 flex shadow-lg"
         >
           <FormField
             control={form.control}

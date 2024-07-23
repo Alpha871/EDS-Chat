@@ -27,7 +27,7 @@ import { useNavigate } from "react-router-dom";
 
 import { z } from "zod";
 
-export function Login() {
+export function Login({ label }: { label: string }) {
   const { userStore } = useStore();
   const { login } = userStore;
   const [error, setError] = useState<string | null>(null);
@@ -55,7 +55,7 @@ export function Login() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Login</Button>
+        <Button variant="outline">{label}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

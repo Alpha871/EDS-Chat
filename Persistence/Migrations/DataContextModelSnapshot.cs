@@ -65,6 +65,9 @@ namespace Persistence.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
@@ -152,6 +155,31 @@ namespace Persistence.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("CustomPrompts");
+                });
+
+            modelBuilder.Entity("Domain.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("Revoked")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("RefreshToken");
                 });
 
             modelBuilder.Entity("Domain.UserPrompt", b =>
@@ -321,6 +349,15 @@ namespace Persistence.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("Domain.RefreshToken", b =>
+                {
+                    b.HasOne("Domain.AppUser", "AppUser")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("AppUserId");
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Domain.UserPrompt", b =>
                 {
                     b.HasOne("Domain.AppUser", "AppUser")
@@ -383,6 +420,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.AppUser", b =>
                 {
+                    b.Navigation("RefreshTokens");
+
                     b.Navigation("UserPrompts");
                 });
 

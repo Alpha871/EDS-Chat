@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../store/store";
 import { AvatarUser } from "@/components/shared/AvatarUser";
@@ -7,12 +7,10 @@ import { Button } from "@/components/ui/button";
 
 function Leftsidebar() {
   const { userStore } = useStore();
-  const { getCurrentUser, user, logout } = userStore;
+  const { user, logout } = userStore;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getCurrentUser();
-  }, [getCurrentUser]);
+  console.log(user);
 
   const handleLogout = () => {
     logout();
@@ -20,7 +18,7 @@ function Leftsidebar() {
   };
 
   return (
-    <section className="custom-scrollbar leftsidebar mt-5">
+    <section className="custom-scrollbar leftsidebar pt-5">
       <div className="flex w-full flex-1 flex-col gap-6 px-6">
         <div className="leftsidebar_link text-light-1">
           {user !== null ? (
@@ -37,37 +35,53 @@ function Leftsidebar() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-wrap gap-5 items-center justify-center">
-              <AvatarUser />
-              <span>Guest</span>
+            <div className="flex flex-col gap-5 ">
+              <div className="flex flex-wrap gap-5 items-center justify-center">
+                <AvatarUser />
+                <span>Guest</span>
+              </div>
+
+              <Button type="button" onClick={() => navigate("/")}>
+                Sign In
+              </Button>
             </div>
           )}
         </div>
-        <Link to="/chat" className="leftsidebar_link  text-light-1">
-          Chat
-        </Link>
-        <Link to="/company" className="leftsidebar_link  text-light-1">
-          Update Company Information
-        </Link>
+        {user?.role.toLowerCase() === "admin" && (
+          <>
+            <Link to="/chat" className="leftsidebar_link  text-light-1">
+              Chat
+            </Link>
+            <Link to="/company" className="leftsidebar_link  text-light-1">
+              Update Company Information
+            </Link>
 
-        <Link
-          to="/companyInformations"
-          className="leftsidebar_link text-light-1"
-        >
-          Informations
-        </Link>
+            <Link
+              to="/companyInformations"
+              className="leftsidebar_link text-light-1"
+            >
+              Informations
+            </Link>
 
-        <Link to="/addInformation" className="leftsidebar_link text-light-1">
-          Add New information
-        </Link>
+            <Link
+              to="/addInformation"
+              className="leftsidebar_link text-light-1"
+            >
+              Add New information
+            </Link>
 
-        <Link to="/customPrompts" className="leftsidebar_link text-light-1">
-          Custom Prompts
-        </Link>
+            <Link to="/customPrompts" className="leftsidebar_link text-light-1">
+              Custom Prompts
+            </Link>
 
-        <Link to="/addCustomPrompt" className="leftsidebar_link text-light-1">
-          Add New Prompt
-        </Link>
+            <Link
+              to="/addCustomPrompt"
+              className="leftsidebar_link text-light-1"
+            >
+              Add New Prompt
+            </Link>
+          </>
+        )}
       </div>
       {/* <div className="w-fit px-6">
         <PassPrompt />

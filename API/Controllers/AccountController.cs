@@ -5,6 +5,7 @@ using API.DTOs;
 using API.Service;
 using AutoMapper;
 using Domain;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,12 +21,14 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _config;
 
         private readonly TokenService _tokenService;
         private readonly UserManager<AppUser> _userManager;
         public AccountController(DataContext context, UserManager<AppUser> userManager, 
-            TokenService tokenService, IMapper mapper)
+            TokenService tokenService, IMapper mapper, IConfiguration config)
         {
+            _config = config;
             _mapper = mapper;
             _userManager = userManager;
             _tokenService = tokenService;
@@ -42,7 +45,7 @@ namespace API.Controllers
             var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 
             if(result) {
-                // await SetRefreshToken(user);
+                await SetRefreshToken(user);
                 return CreateUserDto(user);
             }
 
@@ -78,7 +81,7 @@ namespace API.Controllers
         
 
           if(result.Succeeded) {
-            // await SetRefreshToken(user);
+            await SetRefreshToken(user);
             return CreateUserDto(user);
 
           }
@@ -93,69 +96,87 @@ namespace API.Controllers
             var user = await _userManager.Users
             //   .Include(p => p.Photos)
               .FirstOrDefaultAsync(x => x.Email == User.FindFirstValue(ClaimTypes.Email));
-            // await SetRefreshToken(user);
+            await SetRefreshToken(user);
             return CreateUserDto(user);
         }
 
-        // [HttpGet()]
-        // public async Task<ActionResult<List<ListUserDto>>> GetUsers(string username) {
-        //   var userFirst = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == username);
-        //   if(userFirst == null) return BadRequest("no user");
-
-        //    var list = await _context.Users
-        //                     .Include(p => p.Photos)
-        //                     .ToListAsync();
-        //     var users = new List<ListUserDto>();
-        
-        //     foreach(var item in list) {
-        //         var user = new ListUserDto {
-        //             DisplayName = item.DisplayName,
-        //             Username = item.UserName,
-        //             Image = item.Photos.FirstOrDefault(x => x.IsMain).Url
-        //         };
-        //         users.Add(user);
-        //     }
-
-                   
-                    
-        //     if(users == null) return BadRequest("Problem getting all users");
-        //     return users;
-        // }
-
-
-        // [Authorize]
-        // [HttpPost("refreshToken")]
-        // public async Task<ActionResult<UserDto>> RefreshToken() {
-        //     var refreshToken = Request.Cookies["refreshToken"];
-        //     var user = await _userManager.Users
-        //         //    .Include(p => p.Photos)
-        //            .Include( r => r.RefreshTokens)
-        //            .FirstOrDefaultAsync(u => u.UserName == User.FindFirstValue(ClaimTypes.Name));
-
-        //     if(user == null ) return Unauthorized();
-        //      var oldToken = user.RefreshTokens.SingleOrDefault(x => x.Token == refreshToken);
+          [AllowAnonymous]
+        [HttpPost("GLogin")]
+        public async Task<ActionResult<UserDto>> GoogleLogin(string accessToken) {
             
-        //     if(oldToken != null && !oldToken.IsActive) return Unauthorized();
 
-        //     if(oldToken!= null) oldToken.Revoked = DateTime.UtcNow;
+            var settings = new GoogleJsonWebSignature.ValidationSettings() {
+                Audience = new List<string> {_config["Google:ClientId"]},
+            };
 
-        //     return CreateUserDto(user);
+            var payload = await GoogleJsonWebSignature.ValidateAsync(accessToken, settings);
+
+            if(payload == null) return Unauthorized();
+
+            
+
+            var user = await _userManager.Users
+                //.Include( p => p.Photos)
+                .Where(x => x.Email == payload.Email)
+            .FirstOrDefaultAsync();
+
+            if(user != null) return CreateUserDto(user);
+
+            user = new AppUser {
+                UserName = payload.FamilyName,
+                Email = payload.Email,
+                Firstname = payload.GivenName,
+                Lastname = payload.FamilyName,
+
+            };
+
+            var result = await _userManager.CreateAsync(user);
+
+            if(!result.Succeeded) return BadRequest("Problem creating user account");
+
+            await SetRefreshToken(user);
+        
+            return CreateUserDto(user);
+        
+        }
+
+
+
+
+
+        [Authorize]
+        [HttpPost("refreshToken")]
+        public async Task<ActionResult<UserDto>> RefreshToken() {
+            var refreshToken = Request.Cookies["refreshToken"];
+            var user = await _userManager.Users
+                //    .Include(p => p.Photos)
+                   .Include( r => r.RefreshTokens)
+                   .FirstOrDefaultAsync(u => u.UserName == User.FindFirstValue(ClaimTypes.Name));
+
+            if(user == null ) return Unauthorized();
+             var oldToken = user.RefreshTokens.SingleOrDefault(x => x.Token == refreshToken);
+            
+            if(oldToken != null && !oldToken.IsActive) return Unauthorized();
+
+            if(oldToken!= null) oldToken.Revoked = DateTime.UtcNow;
+
+            return CreateUserDto(user);
     
-        // }
+        }
 
-        // private async Task SetRefreshToken(AppUser  user) {
-        //     var refreshToken = _tokenService.GenerateRefreshToken();
+        private async Task SetRefreshToken(AppUser  user) {
+            var refreshToken = _tokenService.GenerateRefreshToken();
 
-        //     user.RefreshTokens.Add(refreshToken);
-        //     await _userManager.UpdateAsync(user);
+            user.RefreshTokens.Add(refreshToken);
+            await _userManager.UpdateAsync(user);
 
-        //     var cookiesOptions = new CookieOptions {
-        //         HttpOnly = true,
-        //         Expires = DateTime.UtcNow.AddDays(7)
-        //     };
+            var cookiesOptions = new CookieOptions {
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddDays(7)
+            };
 
-        //     Response.Cookies.Append("refreshToken", refreshToken.Token, cookiesOptions);
-        // }
+            Response.Cookies.Append("refreshToken", refreshToken.Token, cookiesOptions);
+        }
 
         
 
@@ -166,6 +187,7 @@ namespace API.Controllers
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
                 Token = _tokenService.CreateToken(user),
+                Role = user.Role == null ? "User" : user.Role,
                 // Image=user?.Photos?.FirstOrDefault(x => x.IsMain == true)?.Url
             };
         }

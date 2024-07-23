@@ -11,18 +11,32 @@ import { useStore } from "../store/store";
 
 function App() {
   const location = useLocation();
-  const { companyStore, informationStore } = useStore();
+  const { companyStore, informationStore, commonStore, userStore } = useStore();
   const { getCompanies, clearCompanies } = companyStore;
   const { getInformations, clearInformations } = informationStore;
 
   useEffect(() => {
+    if (commonStore.token) {
+      userStore.getCurrentUser().finally(() => commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+
     getCompanies();
     getInformations();
+
     return () => {
       clearCompanies();
       clearInformations();
     };
-  }, [getCompanies, clearCompanies, getInformations, clearInformations]);
+  }, [
+    getCompanies,
+    clearCompanies,
+    getInformations,
+    clearInformations,
+    commonStore,
+    userStore,
+  ]);
 
   return (
     <>

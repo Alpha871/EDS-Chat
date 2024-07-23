@@ -18,10 +18,13 @@ namespace API.Service
 
         public string CreateToken(AppUser user) {
 
+
+
             var claims = new List<Claim> {
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenKey"]));
@@ -40,12 +43,12 @@ namespace API.Service
         
         }
 
-        // public RefreshToken GenerateRefreshToken() {
-        //     var randomNumber = new byte[32];
-        //     using var rng = RandomNumberGenerator.Create();
-        //     rng.GetBytes(randomNumber);
-        //     return new RefreshToken {Token = Convert.ToBase64String(randomNumber)};
-        // }
+        public RefreshToken GenerateRefreshToken() {
+            var randomNumber = new byte[32];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return new RefreshToken {Token = Convert.ToBase64String(randomNumber)};
+        }
       
     }
 }

@@ -5,17 +5,18 @@ import { CompanyInput } from "../models/companyInput";
 import { InformationInput } from "../models/information";
 import { CustomPromptInput } from "../models/prompt";
 import { User, UserFormValues } from "../models/user";
+import { store } from "../store/store";
 
 type ModalStateErrors = string[];
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL as string;
 
-// axios.interceptors.request.use((config) => {
-//   const token = store.commonStore.token;
-//   if (token && config.headers) config.headers.Authorization = `Bearer ${token}`;
+axios.interceptors.request.use((config) => {
+  const token = store.commonStore.token;
+  if (token && config.headers) config.headers.Authorization = `Bearer ${token}`;
 
-//   return config;
-// });
+  return config;
+});
 
 // const sleep = (delay: number)c => {
 //   return new Promise((resolve) => setTimeout(resolve, delay));
@@ -125,8 +126,8 @@ const Account = {
   login: (user: UserFormValues) => requests.post<User>("/account/login", user),
   register: (user: UserFormValues) =>
     requests.post<User>("/account/register", user),
-  fbLogin: (accessToken: string) =>
-    requests.post<User>(`/account/fbLogin?accessToken=${accessToken}`, {}),
+  GLogin: (accessToken: string) =>
+    requests.post<User>(`/account/GLogin?accessToken=${accessToken}`, {}),
   refreshToken: () => requests.post<User>("/account/refreshToken", {}),
 };
 
