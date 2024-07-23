@@ -1,0 +1,16 @@
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/bin/Debug/net8.0/Persistence.deps.json
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/bin/Debug/net8.0/Persistence.dll
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/bin/Debug/net8.0/Persistence.pdb
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/bin/Debug/net8.0/Domain.dll
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/bin/Debug/net8.0/Domain.pdb
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persistence.csproj.AssemblyReference.cache
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persistence.AssemblyInfoInputs.cache
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persistence.AssemblyInfo.cs
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persistence.csproj.CoreCompileInputs.cache
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persistence.sourcelink.json
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persiste.61C28332.Up2Date
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persistence.dll
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/refint/Persistence.dll
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/Persistence.pdb
+/Users/alphabah/Desktop/chatEDS/chat/Persistence/obj/Debug/net8.0/ref/Persistence.dll

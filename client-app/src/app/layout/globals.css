@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* main */
+  .main-container {
+    @apply flex min-h-screen flex-1 flex-col items-center bg-gem-2 px-6 pb-10  max-md:pb-32 sm:px-10;
+  }
+
+  /* Head Text */
+  .head-text {
+    @apply text-heading2-bold text-light-1;
+  }
+
+  .leftsidebar {
+    @apply sticky md:fixed  h-screen left-0 top-0 z-20 flex w-64 flex-col  justify-between overflow-auto border-r border-r-dark-4 bg-gem-1 pb-5 max-md:hidden;
+  }
+  .leftsidebar_link {
+    @apply relative flex justify-start gap-4 rounded-lg p-4 hover:bg-slate-400 text-body-medium;
+  }
+
+  .inputArea {
+    @apply rounded-md placeholder:text-slate-500
+     focus:outline-none h-12  w-full 
+    px-5 py-5 text-[#E2E2E5]  border border-dark-4 bg-dark-3;
+  }
+
+  .btnBottom {
+    @apply bg-[#0C0E12] placeholder:text-[#5B5C5C] 
+     placeholder:text-small-regular focus:outline-none h-12   rounded-full w-full
+    focus:bg-[#2E3133] px-5 py-5 text-[#E2E2E5]  border border-x-slate-600
+    focus:border-none;
+  }
+
+  .rightsidebar {
+    @apply sticky md:fixed  h-screen  right-0 top-0 z-20 flex  w-64 flex-col justify-between gap-12 overflow-auto border-l border-l-dark-4 bg-dark-2 px-10 pb-6 max-xl:hidden;
+  }
+}
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #09090a;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #5c5c7b;
+    border-radius: 50px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #7878a3;
+  }
+
+  .no-focus {
+    @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
+  }
+}

@@ -1,0 +1,13 @@
+/Users/alphabah/Desktop/chatEDS/chat/Domain/bin/Debug/net8.0/Domain.deps.json
+/Users/alphabah/Desktop/chatEDS/chat/Domain/bin/Debug/net8.0/Domain.dll
+/Users/alphabah/Desktop/chatEDS/chat/Domain/bin/Debug/net8.0/Domain.pdb
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/Domain.csproj.AssemblyReference.cache
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/Domain.AssemblyInfoInputs.cache
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/Domain.AssemblyInfo.cs
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/Domain.csproj.CoreCompileInputs.cache
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/Domain.sourcelink.json
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/Domain.dll
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/refint/Domain.dll
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/Domain.pdb
+/Users/alphabah/Desktop/chatEDS/chat/Domain/obj/Debug/net8.0/ref/Domain.dll
