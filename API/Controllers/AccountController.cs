@@ -62,17 +62,21 @@ namespace API.Controllers
                 return ValidationProblem();
              
           }
+
           if(await _userManager.Users.AnyAsync(x => x.Email == registerDto.Email)) {
                 ModelState.AddModelError("Email", "Email taken");
 
              return ValidationProblem();
           }
+
+
         
           var user= new AppUser {
             UserName = registerDto.Username,
             Firstname = registerDto.Firstname,
             Lastname  =registerDto.Lastname,
-            Email = registerDto.Email
+            Email = registerDto.Email,
+            EmailConfirmed = false,
           };
 
        
@@ -81,8 +85,13 @@ namespace API.Controllers
         
 
           if(result.Succeeded) {
-            await SetRefreshToken(user);
-            return CreateUserDto(user);
+
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            // var email_body = $"Please confirm your email  "
+
+            // await SetRefreshToken(user);
+            // return CreateUserDto(user);
 
           }
 
@@ -100,7 +109,7 @@ namespace API.Controllers
             return CreateUserDto(user);
         }
 
-          [AllowAnonymous]
+        [AllowAnonymous]
         [HttpPost("GLogin")]
         public async Task<ActionResult<UserDto>> GoogleLogin(string accessToken) {
             
@@ -177,7 +186,21 @@ namespace API.Controllers
 
             Response.Cookies.Append("refreshToken", refreshToken.Token, cookiesOptions);
         }
+        
+        // [HttpPost("verify")]
+        // public async Task<IActionResult> Verify(string token)
+        // {
+        //     var user = await _context.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
+        //     if (user == null)
+        //     {
+        //         return BadRequest("Invalid token.");
+        //     }
 
+        //     user.VerifiedAt = DateTime.Now;
+        //     await _context.SaveChangesAsync();
+
+        //     return Ok("User verified! :)");
+        // }
         
 
 
