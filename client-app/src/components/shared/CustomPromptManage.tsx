@@ -13,16 +13,19 @@ function CustomPromptManage({
   manage?: boolean;
 }) {
   const { customPromptStore } = useStore();
-  const { setSelectedCustomPrompt } = customPromptStore;
+  const { setSelectedCustomPrompt, selectedCustomPrompt } = customPromptStore;
 
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log("selectedCustomPrompt", selectedCustomPrompt);
+  console.log("manage", manage);
+
   const handleClick = () => {
-    if (location.pathname !== "/chat") {
+    if (location.pathname !== "/chat" && !manage) {
       navigate("/chat");
       setSelectedCustomPrompt(prompt);
-    } else {
+    } else if (!manage) {
       setSelectedCustomPrompt(prompt);
     }
   };
@@ -47,7 +50,6 @@ function CustomPromptManage({
               <Link to={`/updateCustomPrompt/${prompt.id}`}>Update</Link>
             </Button>
 
-            {/* <Link to={`deleteCustomPrompt/${prompt.id}`}>Delete</Link> */}
             <DeleteCustomPrompt id={prompt.id!} />
           </div>
         )}

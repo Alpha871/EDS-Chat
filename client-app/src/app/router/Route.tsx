@@ -31,6 +31,7 @@ const routes: RouteObject[] = [
         path: "companyInformations",
         element: <CompanyInformations />,
       },
+
       {
         path: "updateInformation/:id", // Corrected path
         element: <UpdateCompanyInformation />,

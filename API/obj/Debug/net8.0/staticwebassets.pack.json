@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-B2sykew2.css",
+      "PackagePath": "staticwebassets/assets/index-B2sykew2.css"
+    },
+    {
+      "Id": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-D--Vribm.js",
+      "PackagePath": "staticwebassets/assets/index-D--Vribm.js"
+    },
+    {
+      "Id": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/vite.svg",
+      "PackagePath": "staticwebassets/vite.svg"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.API.props",
+      "PackagePath": "build\\API.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.API.props",
+      "PackagePath": "buildMultiTargeting\\API.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.API.props",
+      "PackagePath": "buildTransitive\\API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

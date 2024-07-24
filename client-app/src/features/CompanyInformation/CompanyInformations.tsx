@@ -15,11 +15,11 @@ function CompanyInformations() {
   }, [getInformations, clearInformations]);
 
   return (
-    <div className="flex gap-4">
+    <div className="grid lg:grid-cols-2 gap-4">
       {informations.length > 0 ? (
         informations.map((info) => <Information key={info.id} info={info} />)
       ) : (
-        <div className="flex flex-col flex-wrap gap-3 mt-4">
+        <div className="flex flex-col flex-wrap gap-3 mt-4 items-end justify-end">
           <p className="text-white">No Information yet </p>
           <Button className="px-3 py-2 text-white bg-blue">
             <Link to="/addInformation"> Add information</Link>

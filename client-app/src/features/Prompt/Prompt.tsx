@@ -14,8 +14,6 @@
 
 // export default Prompt;
 
-import React from "react";
-
 function Prompt() {
   return <div>Prompt</div>;
 }

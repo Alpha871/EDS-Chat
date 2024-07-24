@@ -50,7 +50,7 @@ function UpdateCompanyInformation() {
 
   return (
     <div className="text-xl text-[#C6C6C9] font-bold">
-      <h1>Update information</h1>
+      <h1 className="mb-3">Update information</h1>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

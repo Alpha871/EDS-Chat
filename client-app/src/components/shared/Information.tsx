@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { Button } from "../ui/button";
 import DeleteCompanyInformation from "@/features/CompanyInformation/DeleteCompanyInformation";
+import { observer } from "mobx-react-lite";
 
 interface Props {
   info: InformationInput;
@@ -18,7 +19,7 @@ function truncateText(text: string) {
 
 function Information({ info }: Props) {
   return (
-    <div className="flex flex-col p-4 bg-gem-AI-1 rounded-lg text-white">
+    <div className="flex flex-col p-4 bg-gem-AI-1 rounded-lg text-white w-full">
       <p className=" mb-3 ">
         Created at :
         <span className="text-small-regular">
@@ -41,4 +42,4 @@ function Information({ info }: Props) {
   );
 }
 
-export default Information;
+export default observer(Information);

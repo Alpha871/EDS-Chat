@@ -53,7 +53,6 @@ export default class InformationStore {
     this.setLoading(true);
     try {
       const info = await agent.Information.details(id);
-      console.log("info", info);
       this.setSelectedInformation(info);
       this.setLoading(false);
     } catch (error) {
