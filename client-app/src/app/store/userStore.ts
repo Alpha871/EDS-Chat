@@ -4,7 +4,6 @@ import agent from "../api/agent";
 import { store } from "./store";
 import { router } from "../router/Route";
 import { User, UserFormValues } from "../models/user";
-import { run } from "node:test";
 
 export default class UserStore {
   user: User | null = null;
