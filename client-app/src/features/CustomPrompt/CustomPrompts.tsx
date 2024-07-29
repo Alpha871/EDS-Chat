@@ -14,6 +14,8 @@ function CustomPrompts({ manage = true }: { manage?: boolean }) {
     getCustomPrompts();
   }, [getCustomPrompts]);
 
+  console.log("called");
+
   return (
     <div>
       {customPrompts.length > 0 ? (

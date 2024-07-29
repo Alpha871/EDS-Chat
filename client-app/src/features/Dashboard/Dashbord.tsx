@@ -50,9 +50,6 @@ function Dashboard() {
                 }}
               />
             </div>
-            <div>
-              <Login label="Admin" />
-            </div>
           </>
         )}
       </div>

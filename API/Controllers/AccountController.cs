@@ -3,6 +3,7 @@ using System.Security.Claims;
 using API.DTO;
 using API.DTOs;
 using API.Service;
+using API.Service.EmailService;
 using AutoMapper;
 using Domain;
 using Google.Apis.Auth;
@@ -25,9 +26,13 @@ namespace API.Controllers
 
         private readonly TokenService _tokenService;
         private readonly UserManager<AppUser> _userManager;
+         private readonly IEmailService _emailService;
         public AccountController(DataContext context, UserManager<AppUser> userManager, 
-            TokenService tokenService, IMapper mapper, IConfiguration config)
+            TokenService tokenService, IMapper mapper, IConfiguration config, 
+       
+             IEmailService emailService)
         {
+            _emailService = emailService;
             _config = config;
             _mapper = mapper;
             _userManager = userManager;
@@ -41,6 +46,9 @@ namespace API.Controllers
             var user = await _context.Users
                      .FirstOrDefaultAsync(x => x.Email == loginDto.Email);
             if(user == null) return Unauthorized();
+
+
+            if(!user.EmailConfirmed) return Unauthorized("Email not confirmed");
 
             var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 
@@ -88,7 +96,37 @@ namespace API.Controllers
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-            // var email_body = $"Please confirm your email  "
+            // var email_body = "Please confirm your email by clicking <a href=\"#URL#\">here</a>";
+
+            // // https://localhost:8080/authentication/yerifxenail/usecidesdas&code=dasdasd
+            
+            // var callback_url = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", controller:"Account",
+            //        values: new {userId = user.Id, code = code});
+
+              var callback_url = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", controller:"Account",
+                   values: new {email = user.Email, code = code});
+
+            // var body = email_body.Replace("#URL#", callback_url);
+
+            // Send email
+            Console.WriteLine("Sending email to " + registerDto.Email);
+
+             _emailService.SendEmail(new EmailDto {
+                To = registerDto.Email,
+                Subject = "Confirm your email",
+                Body = "This is the code to confirm your email :  " + code 
+               
+            });
+
+            return Ok(new {message = "Please confirm your email with the code sent to your email"});
+
+
+
+
+            
+
+            // Generate the token
+
 
             // await SetRefreshToken(user);
             // return CreateUserDto(user);
@@ -98,6 +136,46 @@ namespace API.Controllers
           return BadRequest(result.Errors);
 
         }
+
+        [AllowAnonymous]
+        [HttpPost("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string email, string code) 
+        {
+            Console.WriteLine($"Email: {email}, Code: {code}");
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(code))
+            {
+                Console.WriteLine("Invalid parameters: Email or Code is null");
+                return BadRequest("Invalid email confirmation link");
+            }
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                Console.WriteLine("User not found for email: " + email);
+                return BadRequest("Invalid email parameter");
+            }
+            Console.WriteLine("user" + user);
+
+
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                Console.WriteLine("Email confirmed for user: " + user.Email);
+                return Ok("Thank you for confirming your email");
+            }
+
+            var errorMessages = result.Errors.Select(e => e.Description).ToList();
+            if (errorMessages.Contains("Invalid token"))
+            {
+                return BadRequest(new { message = "Invalid token" });
+            }
+
+            return BadRequest(new { message = "Failed to confirm email", errors = errorMessages });
+        }
+
+
+
 
         [Authorize]
         [HttpGet]

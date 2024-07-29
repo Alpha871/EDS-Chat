@@ -5,6 +5,7 @@ using System.Text;
 using API.Service;
 using Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 
@@ -19,13 +20,17 @@ namespace API.Extensions
                 option.Password.RequireNonAlphanumeric =false;
                 option.User.RequireUniqueEmail = true;
                 // option.User.AllowedUserNameCharacters = "";
+                option.SignIn.RequireConfirmedEmail = true;
+                option.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
 
             })
-            .AddEntityFrameworkStores<DataContext>();
+            .AddEntityFrameworkStores<DataContext>()
+            .AddDefaultTokenProviders();
 
             var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+
                 .AddJwtBearer(option => {
                     option.TokenValidationParameters = new TokenValidationParameters {
                         ValidateIssuerSigningKey = true,
@@ -34,6 +39,8 @@ namespace API.Extensions
                         ValidateAudience = false,
                     };
                 });
+
+                
 
             services.AddScoped<TokenService>();
 

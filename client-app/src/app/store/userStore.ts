@@ -4,11 +4,14 @@ import agent from "../api/agent";
 import { store } from "./store";
 import { router } from "../router/Route";
 import { User, UserFormValues } from "../models/user";
+import { run } from "node:test";
 
 export default class UserStore {
   user: User | null = null;
   GLoading = false;
   refreshTokenTimeout?: number;
+  emailRes: string = "";
+  emailResError: string = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -34,10 +37,23 @@ export default class UserStore {
 
   register = async (creds: UserFormValues) => {
     const user = await agent.Account.register(creds);
-    store.commonStore.setToken(user.token);
+    console.log(user);
+    // runInAction(() => (this.user = user));
+  };
 
-    this.startRefreshTokenTimer(user);
-    runInAction(() => (this.user = user));
+  emailVerification = async (email: string, code: string) => {
+    try {
+      const res = await agent.Account.emailVerification(email, code);
+      runInAction(() => {
+        this.emailRes = res!;
+      });
+    } catch (error: any) {
+      console.log(error);
+      runInAction(() => {
+        if (error.length === 1) this.emailResError = error[0] + "";
+        console.log(error);
+      });
+    }
   };
 
   getCurrentUser = async () => {

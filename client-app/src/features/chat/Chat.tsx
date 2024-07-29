@@ -18,8 +18,6 @@ function Chat() {
 
   if (company.length === 0) return null;
 
-  console.log("information", gsInformation);
-
   return (
     <section className="flex flex-col">
       <PromptArea

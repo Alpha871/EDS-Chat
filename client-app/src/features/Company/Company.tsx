@@ -29,6 +29,8 @@ function Company() {
     return () => clearCompanies();
   }, [getCompanies, clearCompanies]);
 
+  console.log("called");
+
   const form = useForm<z.infer<typeof companyValidation>>({
     resolver: zodResolver(companyValidation),
     defaultValues: {

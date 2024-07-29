@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 import HeaderEDS from "./HeaderEDS";
 import { useEffect } from "react";
 import { useStore } from "../store/store";
+import ConfirmEmail from "@/features/Dashboard/ConfirmEmail";
 
 function App() {
   const location = useLocation();
@@ -43,6 +44,10 @@ function App() {
       {location.pathname === "/" ? (
         <>
           <Dashbord />
+        </>
+      ) : location.pathname.startsWith("/emailVerification") ? (
+        <>
+          <ConfirmEmail />
         </>
       ) : (
         <>

@@ -173,3 +173,5 @@
 /Users/alphabah/Desktop/chatEDS/chat/API/bin/Debug/net8.0/MimeKit.dll
 /Users/alphabah/Desktop/chatEDS/chat/API/bin/Debug/net8.0/System.Formats.Asn1.dll
 /Users/alphabah/Desktop/chatEDS/chat/API/bin/Debug/net8.0/API.staticwebassets.runtime.json
+/Users/alphabah/Desktop/chatEDS/chat/API/bin/Debug/net8.0/SendGrid.dll
+/Users/alphabah/Desktop/chatEDS/chat/API/bin/Debug/net8.0/StarkbankEcdsa.dll

@@ -15,7 +15,8 @@ namespace Persistence
                 Firstname = "alpha",
                 Lastname = "bah",
                 Email="bah@test.com",
-                Role = "Admin"
+                Role = "Admin",
+                EmailConfirmed = true
             },"Pa$$w0rd" );
         
             var company = new Company

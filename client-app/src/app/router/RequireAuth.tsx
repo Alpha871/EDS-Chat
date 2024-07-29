@@ -1,15 +1,15 @@
-// import { Navigate, Outlet, useLocation } from "react-router-dom";
-// import useStore from "../store/store";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useStore } from "../store/store";
 
-// export default function RequireAuth() {
-//   const {
-//     userStore: { isLoggedIn },
-//   } = useStore();
-//   const location = useLocation();
+export default function RequireAuth() {
+  const {
+    userStore: { isLoggedIn },
+  } = useStore();
+  const location = useLocation();
 
-//   if (!isLoggedIn) {
-//     return <Navigate to="/" state={{ from: location }} />;
-//   }
+  if (!isLoggedIn) {
+    return <Navigate to="/chat" state={{ from: location }} />;
+  }
 
-//   return <Outlet />;
-// }
+  return <Outlet />;
+}

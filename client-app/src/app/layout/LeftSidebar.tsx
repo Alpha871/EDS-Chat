@@ -10,8 +10,6 @@ function Leftsidebar() {
   const { user, logout } = userStore;
   const navigate = useNavigate();
 
-  console.log(user);
-
   const handleLogout = () => {
     logout();
     navigate("/");

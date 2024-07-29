@@ -23,6 +23,7 @@ function UserRegisterForm() {
 
   const { userStore } = useStore();
   const { register } = userStore;
+
   const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof registerValidation>>({
@@ -40,8 +41,9 @@ function UserRegisterForm() {
     try {
       await register(values);
       setErrors([]);
-      navigate("/chat");
+      navigate(`/emailVerification/${values.email}`);
     } catch (error) {
+      console.log("error", error);
       if (Array.isArray(error)) {
         setErrors(error);
       } else {
@@ -52,8 +54,6 @@ function UserRegisterForm() {
       }
     }
   };
-
-  console.log(errors);
 
   return (
     <div>

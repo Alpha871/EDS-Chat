@@ -13,13 +13,10 @@ function CustomPromptManage({
   manage?: boolean;
 }) {
   const { customPromptStore } = useStore();
-  const { setSelectedCustomPrompt, selectedCustomPrompt } = customPromptStore;
+  const { setSelectedCustomPrompt } = customPromptStore;
 
   const location = useLocation();
   const navigate = useNavigate();
-
-  console.log("selectedCustomPrompt", selectedCustomPrompt);
-  console.log("manage", manage);
 
   const handleClick = () => {
     if (location.pathname !== "/chat" && !manage) {

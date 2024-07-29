@@ -74,7 +74,7 @@ namespace API.Extensions
                     .AllowAnyMethod()
                     .AllowCredentials()
                     .WithExposedHeaders("www-Authenticate", "Pagination")
-                    .WithOrigins("http://localhost:5173", "https://localhost:5173"
+                    .WithOrigins("http://localhost:3000", "https://localhost:3000"
                     ,"https://test-eds-ai.aris888.io/");
                 });
             });

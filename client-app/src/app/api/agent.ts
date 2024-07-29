@@ -129,6 +129,11 @@ const Account = {
   GLogin: (accessToken: string) =>
     requests.post<User>(`/account/GLogin?accessToken=${accessToken}`, {}),
   refreshToken: () => requests.post<User>("/account/refreshToken", {}),
+  emailVerification: (email: string, code: string) =>
+    requests.post<void>(
+      `/account/ConfirmEmail?email=${email}&code=${code}`,
+      {}
+    ),
 };
 
 const agent = {

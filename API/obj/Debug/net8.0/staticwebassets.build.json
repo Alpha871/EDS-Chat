@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dwegOcLzW5L/WQOB0l5EzVLX3zkQdn1uvrrO6gfsUy0=",
+  "Hash": "Z4ixS20WoAlRiqrxa/9+j12VeR4szTcfCzsdgUUkPeU=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-B2sykew2.css",
+      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-CEcWIm7b.css",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "assets/index-B2sykew2.css",
+      "RelativePath": "assets/index-CEcWIm7b.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/index-B2sykew2.css"
+      "OriginalItemSpec": "wwwroot/assets/index-CEcWIm7b.css"
     },
     {
-      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-D--Vribm.js",
+      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-cfmcUHW2.js",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "assets/index-D--Vribm.js",
+      "RelativePath": "assets/index-cfmcUHW2.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,7 +52,45 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/index-D--Vribm.js"
+      "OriginalItemSpec": "wwwroot/assets/index-cfmcUHW2.js"
+    },
+    {
+      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-CjkrdDVa.js",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
+      "BasePath": "_content/API",
+      "RelativePath": "assets/index-CjkrdDVa.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/index-CjkrdDVa.js"
+    },
+    {
+      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-CZi7DvGX.js",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
+      "BasePath": "_content/API",
+      "RelativePath": "assets/index-CZi7DvGX.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/index-CZi7DvGX.js"
     },
     {
       "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/index.html",
