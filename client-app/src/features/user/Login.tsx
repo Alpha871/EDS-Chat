@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -111,9 +110,12 @@ export function Login({ label }: { label: string }) {
                 )}
               />
 
-              <DialogFooter>
-                <Button type="submit">Login</Button>
-              </DialogFooter>
+              <Button type="submit">Login</Button>
+              {/* <Button variant="outline">
+                <Link to={`emailVerification/${email}`}>
+                  Confirm your Email
+                </Link>
+              </Button> */}
             </form>
           </div>
         </Form>

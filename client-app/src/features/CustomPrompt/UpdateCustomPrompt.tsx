@@ -41,7 +41,7 @@ function UpdateCustomPrompt() {
 
   const onSubmit = async (values: z.infer<typeof promptValidation>) => {
     updateCustomPrompt({ id: id!, ...values });
-    navigate("/chat");
+    navigate("/customPrompts");
   };
 
   return (

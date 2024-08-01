@@ -77,6 +77,12 @@ export default class InformationStore {
     this.setLoading(true);
     try {
       await agent.Information.update(val);
+      runInAction(() => {
+        this.informations = this.informations.map((c) =>
+          c.id === val.id ? { ...c, prompt: val.information } : c
+        );
+        this.selectedInfnormation = { ...val };
+      });
       this.setLoading(false);
     } catch (error) {
       console.log(error);

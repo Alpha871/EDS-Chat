@@ -47,8 +47,23 @@ namespace API.Controllers
                      .FirstOrDefaultAsync(x => x.Email == loginDto.Email);
             if(user == null) return Unauthorized();
 
+             var callback_url = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", controller:"Account",
+                   values: new {email = user.Email});
 
-            if(!user.EmailConfirmed) return Unauthorized("Email not confirmed");
+            if(!user.EmailConfirmed)  {
+
+                // _emailService.SendEmail(new EmailDto {
+                //     To = loginDto.Email,
+                //     Subject = "Confirm your email",
+                //     Body = "Please confirm your email by clicking <a href=\"" + callback_url + "\">here</a>"
+                // });
+
+                return Unauthorized("Email not confirmed");
+
+            }
+            
+      
+
 
             var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 

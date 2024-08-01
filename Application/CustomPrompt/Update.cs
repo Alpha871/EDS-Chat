@@ -10,7 +10,8 @@ namespace Application.CustomPrompt
     {
         public class Command:IRequest<Result<Unit>>{
             public Guid Id { get; set; }
-            public string Information { get; set; }
+            public string Prompt { get; set; }
+            public string Emoji { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -27,7 +28,8 @@ namespace Application.CustomPrompt
 
                 if(prompt == null) return null;
 
-                prompt.Prompt = request.Information ?? prompt.Prompt;
+                prompt.Prompt = request.Prompt ?? prompt.Prompt;
+                prompt.Emoji = request.Emoji ?? prompt.Emoji;
                 
                 _context.Entry(prompt).State = EntityState.Modified;
 

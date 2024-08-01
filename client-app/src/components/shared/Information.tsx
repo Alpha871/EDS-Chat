@@ -24,7 +24,7 @@ function Information({ info }: Props) {
         Created at :
         <span className="text-small-regular">
           {" "}
-          {format(info.createdAt, "dd MMM yyyy h:mm aa")}
+          {format(info.createdAt!, "dd MMM yyyy h:mm aa")}
         </span>
       </p>
       <div className="text-body-semibold mb-3">

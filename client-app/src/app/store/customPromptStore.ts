@@ -76,6 +76,13 @@ export default class CustomPromptStore {
     this.setLoading(true);
     try {
       await agent.CustomPrompt.update(val);
+      runInAction(() => {
+        this.customPrompts = this.customPrompts.map((c) =>
+          c.id === val.id ? { ...c, prompt: val.prompt, emoji: val.emoji } : c
+        );
+        this.selectedCustomPrompt = { ...val };
+      });
+
       this.setLoading(false);
     } catch (error) {
       console.log(error);
