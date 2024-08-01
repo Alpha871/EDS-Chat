@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oc6dA2KH1bpW9KvStU0uS6e6O56uBm8KgKDprlfaDXk=",
+  "Hash": "ocUxdbkVmo+Kmeb/ltWY4mKDMxdG73RsHMZcAiMUsCo=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "API/wwwroot",
+      "Name": "API\\wwwroot",
       "Source": "API",
-      "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
+      "ContentRoot": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\api\\wwwroot\\",
       "BasePath": "_content/API",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-CEcWIm7b.css",
+      "Identity": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\API\\wwwroot\\assets\\index-CEcWIm7b.css",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
+      "ContentRoot": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\api\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "assets/index-CEcWIm7b.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/index-CEcWIm7b.css"
+      "OriginalItemSpec": "wwwroot\\assets\\index-CEcWIm7b.css"
     },
     {
-      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/assets/index-CRGFFhuu.js",
+      "Identity": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\API\\wwwroot\\assets\\index-CRGFFhuu.js",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
+      "ContentRoot": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\api\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "assets/index-CRGFFhuu.js",
       "AssetKind": "All",
@@ -52,13 +52,32 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/index-CRGFFhuu.js"
+      "OriginalItemSpec": "wwwroot\\assets\\index-CRGFFhuu.js"
     },
     {
-      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/index.html",
+      "Identity": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\API\\wwwroot\\assets\\index-DUHnPgVY.js",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
+      "ContentRoot": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\api\\wwwroot\\",
+      "BasePath": "_content/API",
+      "RelativePath": "assets/index-DUHnPgVY.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\index-DUHnPgVY.js"
+    },
+    {
+      "Identity": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\API\\wwwroot\\index.html",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\api\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -71,13 +90,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/index.html"
+      "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/vite.svg",
+      "Identity": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\API\\wwwroot\\vite.svg",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/alphabah/Desktop/chatEDS/chat/API/wwwroot/",
+      "ContentRoot": "C:\\Users\\Administrator\\Documents\\GitHub\\EDS-Chat\\api\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "vite.svg",
       "AssetKind": "All",
@@ -90,7 +109,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/vite.svg"
+      "OriginalItemSpec": "wwwroot\\vite.svg"
     }
   ]
 }

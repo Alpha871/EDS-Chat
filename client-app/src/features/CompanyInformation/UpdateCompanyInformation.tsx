@@ -45,7 +45,7 @@ function UpdateCompanyInformation() {
     values: z.infer<typeof companyInformationValidation>
   ) => {
     await updateInformation({ id: id!, information: values.information });
-    navigate("/chat");
+    navigate("/companyInformations");
   };
 
   return (
@@ -72,7 +72,7 @@ function UpdateCompanyInformation() {
             )}
           />
 
-          <Button type="submit">Add New information</Button>
+          <Button type="submit">Update Information</Button>
         </form>
       </Form>
     </div>
